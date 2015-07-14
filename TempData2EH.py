@@ -4,7 +4,7 @@ import grovepi
 from azure.servicebus import ServiceBusService
 
 key_name ='RootManageSharedAccessKey' # SharedAccessKeyName from Azure Portal
-key_value='s2mHOGi2IoHNhHG9m2v9TDSa+atCtJtgVZb0oQi0RpI=' # SharedAccessKey from Azure Portal
+key_value='' # SharedAccessKey from Azure Portal
 sbs = ServiceBusService('asatestsn', shared_access_key_name=key_name, shared_access_key_value=key_value)
 sbs.create_event_hub('hubcreationfromlinux')
 

@@ -1,0 +1,25 @@
+#import random because using one of the functions in code
+import random
+from azure.servicebus import ServiceBusService
+
+# SharedAccessKeyName from Azure Portal
+key_name ='RootManageSharedAccessKey'
+
+# SharedAccessKey from Azure Portal
+key_value='' 
+
+# Pointing to Microsoft Azure Service Bus
+sbs = ServiceBusService('SERVICE_BUS_NAME', shared_access_key_name=key_name, shared_access_key_value=key_value)
+
+# Event Hub Creation
+sbs.create_event_hub('hubcreationfromlinux')
+
+# Some randomg values
+devicecounts = 5
+eventcounts = 1000
+
+for eventcount in range (1, eventcounts) :
+    deviceId = "dev-" + str(random.randrange (1, devicecounts))
+    temperature = str(float("{0:.2f}".format(random.uniform (0,50))))
+    sbs.send_event('hubcreationfromlinux', '{ "DeviceId":"' + deviceId + '", "Temperature":"' + temperature +'"}')
+    print "DeviceId : " + deviceId + "  Temperature : " + temperature
